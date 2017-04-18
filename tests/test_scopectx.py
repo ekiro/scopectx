@@ -1,6 +1,6 @@
 import pytest
 
-from scopectx import Context, NotInContextException, DuplicateContextException
+from scopectx import Context, DuplicateContextException, NotInContextException
 
 
 @pytest.fixture()
