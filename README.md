@@ -1,4 +1,4 @@
-# scopectx [![PyPI](https://img.shields.io/pypi/pyversions/scopectx.svg)](https://pypi.python.org/pypi/scopectx/)
+# scopectx [![PyPI](https://img.shields.io/pypi/pyversions/scopectx.svg)](https://pypi.python.org/pypi/scopectx/) [![Build Status](https://travis-ci.org/ekiro/scopectx.svg?branch=master)](https://travis-ci.org/ekiro/scopectx)
 Simple scoped context library. scopectx allows you to use context object
 attached to some specific execution scope (see usage examples). 
 Just like `threading.local`, but for `with` block.
