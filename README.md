@@ -62,3 +62,38 @@ def index_handler(content):
 
 ```
 
+## Documentation
+
+### scopectx.Context
+
+Base context class, creates new data for every `with` block.
+
+### scopectx.MultiLevelContext
+
+Just like `Context`, but in nested `with` block, it returns value from an
+ outer block, instead of rising `KeyError` (in case you will not overwrite it,
+ and it's defined somewhere upper):
+
+```python
+from scopectx import MultiLevelContext
+
+ctx = MultiLevelContext()
+
+
+def nested():
+    with ctx:
+        try:
+            print(ctx['sth'])  # will raise KeyError
+        except KeyError:
+            pass
+        print(ctx['hello'])  # 'world'
+        ctx['hello'] = 'kiro'
+        print(ctx['hello'])  # 'kiro'
+
+
+with ctx:
+    ctx['hello'] = 'world'
+    print(ctx['hello'])  # 'world'
+    nested()
+    print(ctx['hello'])  # still 'world'
+```

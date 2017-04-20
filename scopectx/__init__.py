@@ -42,3 +42,29 @@ class Context(object):
         frame = self._find_context_frame()
         data = self.frames_data[frame]
         data[key] = value
+
+
+class MultiLevelContext(Context):
+    def _iter_context_frames(self):
+        frame = inspect.currentframe().f_back
+
+        while frame:
+            if frame in self.frames_data:
+                yield frame
+            frame = frame.f_back
+
+    def __getitem__(self, item):
+        frame_iterator = self._iter_context_frames()
+        try:
+            frame = next(frame_iterator)
+        except StopIteration:
+            raise NotInContextException
+
+        while frame:
+            data = self.frames_data[frame]
+            if item in data:
+                return data[item]
+            else:
+                frame = next(frame_iterator, None)
+
+        raise KeyError(item)
