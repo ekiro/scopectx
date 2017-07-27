@@ -4,7 +4,7 @@ keywords = ' '.join(('python tools'))
 
 setup(
     name='scopectx',
-    version='0.2.0',
+    version='0.2.1',
     packages=['scopectx'],
     url='https://github.com/ekiro/scopectx',
     license='MIT License',
